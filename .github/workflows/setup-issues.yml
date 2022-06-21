@@ -1,0 +1,19 @@
+name: Create a list of issues
+on:
+  workflow_call:
+    inputs:
+      json:
+        required: true
+permissions:
+  contents: read
+  issues: write
+jobs:
+  create:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./create-issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          json: ${{ inputs.json }}
