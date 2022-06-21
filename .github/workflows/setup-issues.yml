@@ -4,6 +4,7 @@ on:
     inputs:
       json:
         required: true
+        type: string
 permissions:
   contents: read
   issues: write
