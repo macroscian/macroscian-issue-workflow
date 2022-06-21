@@ -5,6 +5,10 @@ on:
       json:
         required: true
         type: string
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+        type: string
 permissions:
   contents: read
   issues: write
@@ -14,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: ./create-issues
-        env:
+        secrets:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           json: ${{ inputs.json }}
